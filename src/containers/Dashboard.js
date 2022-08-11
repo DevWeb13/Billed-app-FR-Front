@@ -5,6 +5,12 @@ import { ROUTES_PATH } from '../constants/routes.js'
 import USERS_TEST from '../constants/usersTest.js'
 import Logout from "./Logout.js"
 
+/**
+ * It filters the bills based on the status and the user's email
+ * @param data - the data to be filtered
+ * @param status - the status of the bill
+ * @returns An array of bills that have the status of the argument passed in.
+ */
 export const filteredBills = (data, status) => {
   return (data && data.length) ?
     data.filter(bill => {
@@ -27,6 +33,11 @@ export const filteredBills = (data, status) => {
     }) : []
 }
 
+/**
+ * It takes a bill object and returns a string of HTML that represents a bill card
+ * @param bill - the bill object
+ * @returns A string of HTML code.
+ */
 export const card = (bill) => {
   const firstAndLastNames = bill.email.split('@')[0]
   const firstName = firstAndLastNames.includes('.') ?
@@ -52,10 +63,20 @@ export const card = (bill) => {
   `)
 }
 
+/**
+ * It takes an array of bills and returns a string of HTML
+ * @param bills - an array of bill objects
+ * @returns A string of HTML elements
+ */
 export const cards = (bills) => {
   return bills && bills.length ? bills.map(bill => card(bill)).join("") : ""
 }
 
+/**
+ * It takes an index and returns a status
+ * @param index - the index of the status
+ * @returns The status of the request
+ */
 export const getStatus = (index) => {
   switch (index) {
     case 1:
@@ -67,6 +88,7 @@ export const getStatus = (index) => {
   }
 }
 
+/* A class that is exported by default. */
 export default class {
   constructor({ document, onNavigate, store, bills, localStorage }) {
     this.document = document
@@ -78,6 +100,7 @@ export default class {
     new Logout({ localStorage, onNavigate })
   }
 
+  /* A function that is called when the user clicks on the eye icon. */
   handleClickIconEye = () => {
     const billUrl = $('#icon-eye-d').attr("data-bill-url")
     const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
@@ -85,6 +108,12 @@ export default class {
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
+  /**
+   * It handles the click event on the bill's edit button
+   * @param e - the event
+   * @param bill - the bill object
+   * @param bills - an array of objects that contains all the bills
+   */
   handleEditTicket(e, bill, bills) {
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
@@ -110,6 +139,7 @@ export default class {
     $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
   }
 
+  /* A function that is called when the user clicks on the accept button. */
   handleAcceptSubmit = (e, bill) => {
     const newBill = {
       ...bill,
@@ -120,6 +150,7 @@ export default class {
     this.onNavigate(ROUTES_PATH['Dashboard'])
   }
 
+  /* A function that is called when the user clicks on the refuse button. */
   handleRefuseSubmit = (e, bill) => {
     const newBill = {
       ...bill,
@@ -130,6 +161,15 @@ export default class {
     this.onNavigate(ROUTES_PATH['Dashboard'])
   }
 
+  /**
+   * This function is called when a user clicks on a status header. It checks if the user has clicked
+   * on the same status header twice in a row. If so, it will hide the tickets associated with that
+   * status. If not, it will show the tickets associated with that status
+   * @param e - the event
+   * @param bills - an array of objects that contain all the information about the tickets
+   * @param index - the index of the status button that was clicked
+   * @returns The bills array is being returned.
+   */
   handleShowTickets(e, bills, index) {
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
@@ -153,6 +193,7 @@ export default class {
 
   }
 
+  /* A function that returns a promise. */
   getBillsAllUsers = () => {
     if (this.store) {
       return this.store
@@ -176,6 +217,7 @@ export default class {
 
   // not need to cover this function by tests
   /* istanbul ignore next */
+  /* Updating the bill in the database. */
   updateBill = (bill) => {
     if (this.store) {
     return this.store

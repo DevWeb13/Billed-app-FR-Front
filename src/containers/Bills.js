@@ -2,6 +2,7 @@ import { ROUTES_PATH } from '../constants/routes.js'
 import { formatDate, formatStatus } from "../app/format.js"
 import Logout from "./Logout.js"
 
+/* A class that is being exported. */
 export default class {
   constructor({ document, onNavigate, store, localStorage }) {
     this.document = document
@@ -16,10 +17,12 @@ export default class {
     new Logout({ document, localStorage, onNavigate })
   }
 
+  /* A function that is being called when the user clicks on the button "New Bill". */
   handleClickNewBill = () => {
     this.onNavigate(ROUTES_PATH['NewBill'])
   }
 
+  /* A function that is being called when the user clicks on the icon "Eye". */
   handleClickIconEye = (icon) => {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
@@ -27,6 +30,7 @@ export default class {
     $('#modaleFile').modal('show')
   }
 
+  /* A function that is being called when the user clicks on the button "New Bill". */
   getBills = () => {
     if (this.store) {
       return this.store

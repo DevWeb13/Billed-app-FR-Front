@@ -9,6 +9,8 @@ import DashboardUI from "../views/DashboardUI.js"
 
 import { ROUTES, ROUTES_PATH } from "../constants/routes.js"
 
+/* This is the main entry point of the application. It is responsible for rendering the initial HTML
+and then loading the appropriate components based on the current URL. */
 export default () => {
   const rootDiv = document.getElementById('root')
   rootDiv.innerHTML = ROUTES({ pathname: window.location.pathname })

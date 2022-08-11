@@ -1,5 +1,6 @@
 import VerticalLayout from './VerticalLayout.js'
 
+/* A function that returns a string. */
 export default () => {
 
   return (`

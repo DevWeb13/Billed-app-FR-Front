@@ -3,6 +3,7 @@ import { ROUTES_PATH } from '../constants/routes.js'
 export let PREVIOUS_LOCATION = ''
 
 // we use a class so as to test its methods in e2e tests
+/* It's a class that handles the login form */
 export default class Login {
   constructor({ document, localStorage, onNavigate, PREVIOUS_LOCATION, store }) {
     this.document = document
@@ -15,6 +16,7 @@ export default class Login {
     const formAdmin = this.document.querySelector(`form[data-testid="form-admin"]`)
     formAdmin.addEventListener("submit", this.handleSubmitAdmin)
   }
+  /* A function that is called when the user clicks on the submit button of the form. */
   handleSubmitEmployee = e => {
     e.preventDefault()
     const user = {
@@ -37,6 +39,7 @@ export default class Login {
 
   }
 
+  /* It's a function that is called when the user clicks on the submit button of the form. */
   handleSubmitAdmin = e => {
     e.preventDefault()
     const user = {
@@ -59,6 +62,7 @@ export default class Login {
   }
 
   // not need to cover this function by tests
+  /* It's a function that is called when the user clicks on the submit button of the form. */
   login = (user) => {
     if (this.store) {
       return this.store
@@ -74,6 +78,7 @@ export default class Login {
   }
 
   // not need to cover this function by tests
+  /* It's a function that is called when the user clicks on the submit button of the form. */
   createUser = (user) => {
     if (this.store) {
       return this.store
