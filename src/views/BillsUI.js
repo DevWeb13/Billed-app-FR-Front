@@ -19,6 +19,11 @@ const row = (bill) => {
     `)
   }
 
+/**
+ * It takes an array of bills and returns a string of HTML table rows
+ * @param data - the data that we're going to be using to populate the table
+ * @returns A string of HTML
+ */
 const rows = (data) => {
   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
 }
@@ -47,6 +52,7 @@ export default ({ data: bills, loading, error }) => {
   } else if (error) {
     return ErrorPage(error)
   }
+  console.log(bills)
   
   return (`
     <div class='layout'>
