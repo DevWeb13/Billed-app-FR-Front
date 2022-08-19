@@ -19,8 +19,12 @@ const row = (bill) => {
     `)
 }
 
-
-const antiChrono = (a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1);
+const antiChrono = (a, b) => {
+  if(a.rawDate){
+    return a.rawDate < b.rawDate ? 1 : -1
+  }
+  return a.date < b.date ? 1 : -1
+}
 /**
  * It takes an array of bills, sorts them in reverse chronological order, and then maps each bill to a
  * row of HTML
