@@ -115,6 +115,8 @@ export default class {
    * @param bills - an array of objects that contains all the bills
    */
   handleEditTicket(e, bill, bills) {
+    
+    console.log({ bill, bills })
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     if (this.counter % 2 === 0) {
@@ -186,7 +188,11 @@ export default class {
     }
 
     bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      console.log({index})
+       //$(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      $(`#open-bill${bill.id}`, `#status-bills-container${this.index}` ).click((e) => {
+        this.handleEditTicket(e, bill, bills)
+      })      
     })
 
     return bills
