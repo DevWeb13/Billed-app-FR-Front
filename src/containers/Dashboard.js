@@ -117,13 +117,19 @@ export default class {
   handleEditTicket(e, bill, bills) {
     
     console.log({ bill, bills })
+    /* Checking if the counter is undefined or if the id of the bill is not equal to the id of the bill
+    that was clicked. If so, it will set the counter to 0. */
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     if (this.counter % 2 === 0) {
+      /* Setting the background color of all the bills to blue. */
       bills.forEach(b => {
         $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
       })
+      /* Changing the background color of the bill to a dark blue. */
       $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
+      /* Setting the html of the div with the class 'dashboard-right-container' to the html of the
+      DashboardFormUI function. */
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
       $('.vertical-navbar').css({ height: '150vh' })
       this.counter ++

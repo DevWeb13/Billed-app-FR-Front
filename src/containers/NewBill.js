@@ -65,6 +65,7 @@ export default class NewBill {
       fileName: this.fileName,
       status: 'pending'
     }
+    console.log(bill.date.value);
     this.updateBill(bill)
     this.onNavigate(ROUTES_PATH['Bills'])
   }
