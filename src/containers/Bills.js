@@ -24,10 +24,10 @@ export default class {
 
   /* A function that is being called when the user clicks on the icon "Eye". */
   handleClickIconEye = (icon) => {
-    const billUrl = icon.getAttribute("data-bill-url")
+    const billUrl = $(icon).attr("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`)
-    $('#modaleFile').modal('show')
+    if (typeof $('#modaleFile').modal === 'function') $('#modaleFile').modal('show')
   }
 
   /* A function that is being called when the user clicks on the button "New Bill". */
