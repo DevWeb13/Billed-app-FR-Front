@@ -225,7 +225,7 @@ describe('Given I am connected as Admin and I am on Dashboard page and I clicked
       }
       const store = null
       const dashboard = new Dashboard({
-        document, onNavigate, store, billsFixtures, localStorage: window.localStorage
+        document, onNavigate, store, bills: billsFixtures, localStorage: window.localStorage
       })
 
       const handleClickIconEye = jest.fn(dashboard.handleClickIconEye)

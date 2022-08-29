@@ -17,7 +17,9 @@ export default class NewBill {
     this.billId = null
     new Logout({ document, localStorage, onNavigate })
   }
-  /* A function that is called when the form is submitted. It prevents the default action of the form,
+  
+  /* It's a function that is called when the file is changed. It prevents the default action of the
+  form,
     which is to reload the page. It then creates a bill object with the values of the form and calls
     the updateBill function. */
   handleChangeFile = e => {
@@ -29,6 +31,7 @@ export default class NewBill {
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
+    console.log(formData)
 
     this.store
       .bills()
@@ -44,6 +47,7 @@ export default class NewBill {
         this.fileUrl = fileUrl
         this.fileName = fileName
       }).catch(error => console.error(error))
+      console.log(this.store)
   }
   /* A function that is called when the form is submitted. It prevents the default action of the form,
   which is to reload the page. It then creates a bill object with the values of the form and calls

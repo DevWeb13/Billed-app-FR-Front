@@ -114,18 +114,7 @@ export default class {
    * @param bill - the bill object
    * @param bills - an array of objects that contains all the bills
    */
-  handleEditTicket(e, bill, bills) {
-    
-    console.log({ bill, bills })
-    if(bill.status === "pending"){
-      this.index === 1
-    }
-    if(bill.status === "accepted"){
-      this.index === 2
-    }
-    if(bill.status === "refused"){
-      this.index === 3
-    }
+  handleEditTicket(e, bill, bills) {  
     /* Checking if the counter is undefined or if the id of the bill is not equal to the id of the bill
     that was clicked. If so, it will set the counter to 0. */
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
@@ -144,7 +133,7 @@ export default class {
       $('#icon-eye-d').click(this.handleClickIconEye)
     $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
     $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
-      this.counter ++
+       this.counter ++
     } else {
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
 
@@ -205,10 +194,10 @@ export default class {
 
     bills.forEach(bill => {
       console.log({index})
-       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-      // $(`#open-bill${bill.id}`, `#status-bills-container${this.index}` ).click((e) => {
-      //   this.handleEditTicket(e, bill, bills)
-      // })      
+      // $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      $(`#status-bills-container${index} #open-bill${bill.id}` ).click((e) => {
+        this.handleEditTicket(e, bill, bills)
+      })      
     })
 
     return bills

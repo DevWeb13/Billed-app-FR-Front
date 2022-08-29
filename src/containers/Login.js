@@ -63,6 +63,7 @@ export default class Login {
 
   // not need to cover this function by tests
   /* It's a function that is called when the user clicks on the submit button of the form. */
+    /* istanbul ignore next */
   login = (user) => {
     if (this.store) {
       return this.store
@@ -79,6 +80,8 @@ export default class Login {
 
   // not need to cover this function by tests
   /* It's a function that is called when the user clicks on the submit button of the form. */
+ 
+  /* istanbul ignore next */
   createUser = (user) => {
     if (this.store) {
       return this.store

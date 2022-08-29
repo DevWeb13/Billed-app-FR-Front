@@ -59,24 +59,23 @@ describe("Given I am connected as an employee", () => {
     })
 
     test('Then clic on one of iconEye, the modal should be displayed', () => {
+      document.body.innerHTML = BillsUI({ data: billsFixtures })
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname })
       }
       const store = null
       const bills = new Bills({
-        document, onNavigate, store, localStorage: window.localStorage
+        document, onNavigate, store, bills: billsFixtures, localStorage: window.localStorage
       })
-
       const handleClickIconEye = jest.fn(bills.handleClickIconEye)
-      const allEye = screen.getAllByTestId('icon-eye')
-      const eye = allEye[0]
-      eye.addEventListener('click', handleClickIconEye)
-      userEvent.click(eye)
+      const eye = screen.getAllByTestId('icon-eye')
+      eye[0].addEventListener('click', handleClickIconEye)
+      userEvent.click(eye[0])
       expect(handleClickIconEye).toHaveBeenCalled()
-
       const modale = screen.getByTestId('modaleFile')
       expect(modale).toBeTruthy()
-    })
+      
+  })
 
     test('Then clic on button newBill the newBill page be displayed', () => {
       const onNavigate = (pathname) => {
