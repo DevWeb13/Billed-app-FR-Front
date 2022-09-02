@@ -73,8 +73,9 @@ describe("Given I am connected as an employee", () => {
       userEvent.click(eye[0])
       expect(handleClickIconEye).toHaveBeenCalled()
       const modale = screen.getByTestId('modaleFile')
-      expect(modale).toBeTruthy()
-      
+      expect(modale).toBeTruthy() 
+      const billProofContainer = document.body.querySelector('.bill-proof-container')
+      expect(billProofContainer).toBeTruthy()
   })
 
     test('Then clic on button newBill the newBill page be displayed', () => {

@@ -47,7 +47,7 @@ export default class {
                 status: formatStatus(doc.status)
               }
             } catch(e) {
-              console.log(e,'for',doc)
+              // console.log(e,'for',doc)
               return {
                 ...doc,
                 date: doc.date,
@@ -56,7 +56,7 @@ export default class {
             }
           })
           
-          console.log('length', bills)
+          // console.log('length', bills)
         return bills
       })
     }

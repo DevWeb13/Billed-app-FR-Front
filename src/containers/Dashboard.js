@@ -193,11 +193,11 @@ export default class {
     }
 
     bills.forEach(bill => {
-      console.log({index})
-      // $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-      $(`#status-bills-container${index} #open-bill${bill.id}` ).click((e) => {
-        this.handleEditTicket(e, bill, bills)
-      })      
+      // console.log({index})
+       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      // $(`#status-bills-container${index} #open-bill${bill.id}` ).click((e) => {
+      //   this.handleEditTicket(e, bill, bills)
+      //})      
     })
 
     return bills

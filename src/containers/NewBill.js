@@ -31,7 +31,6 @@ export default class NewBill {
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
-    console.log(formData)
 
     this.store
       .bills()
@@ -42,19 +41,16 @@ export default class NewBill {
         }
       })
       .then(({fileUrl, key}) => {
-        console.log(fileUrl)
         this.billId = key
         this.fileUrl = fileUrl
         this.fileName = fileName
       }).catch(error => console.error(error))
-      console.log(this.store)
   }
   /* A function that is called when the form is submitted. It prevents the default action of the form,
   which is to reload the page. It then creates a bill object with the values of the form and calls
   the updateBill function. */
   handleSubmit = e => {
     e.preventDefault()
-    console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
     const bill = {
       email,
@@ -69,7 +65,7 @@ export default class NewBill {
       fileName: this.fileName,
       status: 'pending'
     }
-    console.log(bill.date.value);
+    // console.log(bill.date.value);
     this.updateBill(bill)
     this.onNavigate(ROUTES_PATH['Bills'])
   }
