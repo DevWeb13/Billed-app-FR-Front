@@ -43,7 +43,7 @@ export const card = (bill) => {
   const firstName = firstAndLastNames.includes('.') ?
     firstAndLastNames.split('.')[0] : ''
   const lastName = firstAndLastNames.includes('.') ?
-  firstAndLastNames.split('.')[1] : firstAndLastNames
+    firstAndLastNames.split('.')[1] : firstAndLastNames
 
   return (`
     <div class='bill-card' id='open-bill${bill.id}' data-testid='open-bill${bill.id}'>
@@ -114,7 +114,7 @@ export default class {
    * @param bill - the bill object
    * @param bills - an array of objects that contains all the bills
    */
-  handleEditTicket(e, bill, bills) {  
+  handleEditTicket(e, bill, bills) {
     /* Checking if the counter is undefined or if the id of the bill is not equal to the id of the bill
     that was clicked. If so, it will set the counter to 0. */
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
@@ -131,9 +131,9 @@ export default class {
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
       $('.vertical-navbar').css({ height: '150vh' })
       $('#icon-eye-d').click(this.handleClickIconEye)
-    $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
-    $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
-       this.counter ++
+      $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
+      $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
+      this.counter++
     } else {
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
 
@@ -141,9 +141,8 @@ export default class {
         <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
       `)
       $('.vertical-navbar').css({ height: '120vh' })
-      this.counter ++
+      this.counter++
     }
-    
   }
 
   /* A function that is called when the user clicks on the accept button. */
@@ -181,23 +180,23 @@ export default class {
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
     if (this.counter % 2 === 0) {
-      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
+      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)' })
       $(`#status-bills-container${this.index}`)
         .html(cards(filteredBills(bills, getStatus(this.index))))
       this.counter++
     } else {
-      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
+      $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)' })
       $(`#status-bills-container${this.index}`)
         .html("")
       this.counter++
     }
 
     bills.forEach(bill => {
-      // console.log({index})
-       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-      // $(`#status-bills-container${index} #open-bill${bill.id}` ).click((e) => {
-      //   this.handleEditTicket(e, bill, bills)
-      //})      
+
+      // $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      $(`#status-bills-container${index} #open-bill${bill.id}`).click((e) => {
+        this.handleEditTicket(e, bill, bills)
+      })
     })
 
     return bills
@@ -208,21 +207,21 @@ export default class {
   getBillsAllUsers = () => {
     if (this.store) {
       return this.store
-      .bills()
-      .list()
-      .then(snapshot => {
-        const bills = snapshot
-        .map(doc => ({
-          id: doc.id,
-          ...doc,
-          date: doc.date,
-          status: doc.status
-        }))
-        return bills
-      })
-      .catch(error => {
-        throw error;
-      })
+        .bills()
+        .list()
+        .then(snapshot => {
+          const bills = snapshot
+            .map(doc => ({
+              id: doc.id,
+              ...doc,
+              date: doc.date,
+              status: doc.status
+            }))
+          return bills
+        })
+        .catch(error => {
+          throw error;
+        })
     }
   }
 
@@ -231,11 +230,11 @@ export default class {
   /* Updating the bill in the database. */
   updateBill = (bill) => {
     if (this.store) {
-    return this.store
-      .bills()
-      .update({data: JSON.stringify(bill), selector: bill.id})
-      .then(bill => bill)
-      .catch(console.log)
+      return this.store
+        .bills()
+        .update({ data: JSON.stringify(bill), selector: bill.id })
+        .then(bill => bill)
+        .catch(console.log)
     }
   }
 }
